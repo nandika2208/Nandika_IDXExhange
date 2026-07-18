@@ -91,6 +91,24 @@ print("\nOutlier Summary")
 for col, count in outlier_summary.items():
 
     print(f"{col}: {count} outliers")
+
+drop_columns = more_missing.index.tolist()
+more_drop= [ "ListingKey","ListingKeyNumeric","ListingId","ListAgentEmail",
+  "ListAgentFirstName","ListAgentLastName","ListAgentFullName",
+"CoListAgentFirstName","CoListAgentLastName","BuyerAgentFirstName",
+"BuyerAgentLastName",  "BuyerAgentMlsId","BuyerAgentAOR","ListAgentAOR",
+"OriginatingSystemName","OriginatingSystemSubName"]
+
+
+sold= sold.drop(columns=drop_columns+ more_drop)
+print("\n shape after dropping columns:",sold.shape)
+
+output_file = "/Users/nandika/Desktop/IDX EXCHANGE /output /CombinedSellings_Cleaned.csv"
+
+sold.to_csv(output_file, index=False)
+
+print("\nCleaned dataset saved successfully!")
+print(output_file)
     
 
     
